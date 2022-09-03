@@ -31,6 +31,7 @@ newsCategory()
 const loadNews = async (newss) =>{
     const url = `https://openapi.programming-hero.com/api/news/category/0${newss}`
     const res = await fetch(url)
+    
     const data = await res.json()
     displayNews(data.data)
 };
@@ -62,7 +63,10 @@ const displayNews = (newss) =>{
                         </div>
                         <p class="text-muted"><i class="fa-solid fa-eye"></i>  ${news.total_view}</p>
                         <p class="text-muted">${news.rating.number}</p>
-                        <p><i class="fa-solid fa-arrow-right"></i></p>
+
+
+                        <button class="btn btn-primary" onclick="loadDetails('${news._id}')" data-bs-toggle="modal" data-bs-target="#exampleModal">More Details</button>
+                        
                     </div>
                     
                 </div>
@@ -74,3 +78,32 @@ const displayNews = (newss) =>{
     }
 }
 loadNews()
+
+const loadDetails = id =>{
+    const url =`https://openapi.programming-hero.com/api/news/${id}`
+    fetch(url)
+    .then(res => res.json())
+    .then(data => displayDetails(data.data))
+}
+
+const displayDetails = details =>{
+    const getModalDiv = document.getElementById('modal-details');
+    getModalDiv.textContent = ''
+    for (const detail of details){
+        
+        const headerModal = document.getElementById('exampleModalLabel');
+        headerModal.innerText = detail.title;
+
+        const createDetailsDiv = document.createElement('div');
+        
+    createDetailsDiv.innerHTML = `
+    <div class="col-md-4">
+         <img src="${detail.image_url}" class="img-fluid rounded-start" alt="...">
+    </div>
+    `
+    getModalDiv.appendChild(createDetailsDiv)
+    }
+    
+}
+
+loadDetails()
