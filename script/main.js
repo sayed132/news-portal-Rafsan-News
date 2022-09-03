@@ -1,21 +1,26 @@
-const newsCategory = async () =>{
+const newsCategory = async () => {
     const url = `https://openapi.programming-hero.com/api/news/categories`
-    const res = await fetch(url);
-    const data = await res.json();
-    displayCategory(data.data.news_category)
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+        displayCategory(data.data.news_category)
+    }
+    catch (error){
+        console.log(error)
+    }
 }
 
 
 
-const displayCategory = (categorys) =>{
+const displayCategory = (categorys) => {
     const getCategoryDiv = document.getElementById('navbar-items');
-    
-    for (const category of categorys){
+
+    for (const category of categorys) {
         const createCategoryList = document.createElement('ul');
         createCategoryList.classList.add('nav')
         createCategoryList.classList.add('nav-pills')
         createCategoryList.classList.add('nav-fill')
-        createCategoryList.innerHTML =`
+        createCategoryList.innerHTML = `
             <li class="list-gruop nav-item" onclick="loadNews(${category.category_id})"> 
             <a class="nav-link" href="#">${category.category_name}</a>  
             </li>
@@ -28,32 +33,39 @@ newsCategory()
 // category js ends here 
 
 // display news starts 
-const loadNews = async (newss) =>{
+const loadNews = async (newss) => {
     toggleSpinner(true)
     const url = `https://openapi.programming-hero.com/api/news/category/0${newss}`
-    const res = await fetch(url)
-    
-    const data = await res.json()
-    displayNews(data.data)
-    displayInput(data.data)
+    try {
+        const res = await fetch(url)
+
+        const data = await res.json()
+        displayNews(data.data)
+        displayInput(data.data)
+    }
+    catch (error) {
+        console.log(error)
+    }
 };
-const displayInput = input =>{
+const displayInput = input => {
     const displayFeild = document.getElementById('input-feild')
     displayFeild.innerText = `
     ${input.length} items found for this category 
     `;
 }
 
-const displayNews = (newss) =>{
+
+const displayNews = (newss) => {
     const getNewsDiv = document.getElementById('news-section');
-    
+
     getNewsDiv.textContent = '';
-    for (const news of newss){
-        
+    for (const news of newss) {
+
+
         const createNewsDiv = document.createElement('div');
         createNewsDiv.classList.add('card')
         createNewsDiv.classList.add('mb-3')
-        createNewsDiv.innerHTML =`
+        createNewsDiv.innerHTML = `
         <div class="row g-0">
             <div class="col-md-4">
                 <img src="${news.image_url}" class="img-fluid rounded-start" alt="...">
@@ -61,7 +73,7 @@ const displayNews = (newss) =>{
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">${news.title}</h5>
-                    <p class="card-text">${news.details.slice(0,250)} ...</p>
+                    <p class="card-text">${news.details.slice(0, 250)} ...</p>
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="d-flex justify-content-between">
                         <img src="${news.author.img}" class=" img-name rounded-circle">
@@ -71,7 +83,7 @@ const displayNews = (newss) =>{
                         </div>
                         
                         </div>
-                        <p class="text-muted"><i class="fa-solid fa-eye"></i>  ${news.total_view ? news.total_view : 0}</p>
+                        <p class="text-muted"><i class="fa-solid fa-eye"></i> ${news.total_view ? news.total_view : 0}</p>
                         <p class="text-muted">${news.rating.number}</p>
 
 
@@ -87,17 +99,17 @@ const displayNews = (newss) =>{
         getNewsDiv.appendChild(createNewsDiv)
         // const points = news.total_view;
         // points.sort(function(a, b){return b - a});
-        
+
     }
     toggleSpinner(false)
 }
 
 const toggleSpinner = isLoading => {
     const loadSection = document.getElementById('loader');
-    if(isLoading){
+    if (isLoading) {
         loadSection.classList.remove('d-none')
     }
-    else{
+    else {
         loadSection.classList.add('d-none')
     }
 }
@@ -105,24 +117,25 @@ const toggleSpinner = isLoading => {
 
 loadNews()
 
-const loadDetails = id =>{
-    const url =`https://openapi.programming-hero.com/api/news/${id}`
+const loadDetails = id => {
+    const url = `https://openapi.programming-hero.com/api/news/${id}`
     fetch(url)
-    .then(res => res.json())
-    .then(data => displayDetails(data.data))
+        .then(res => res.json())
+        .then(data => displayDetails(data.data))
+        .catch(error => console.log(error))
 }
 
-const displayDetails = details =>{
+const displayDetails = details => {
     const getModalDiv = document.getElementById('modal-details');
     getModalDiv.textContent = ''
-    for (const detail of details){
-        
+    for (const detail of details) {
+
         const headerModal = document.getElementById('exampleModalLabel');
         headerModal.innerText = detail.title;
 
         const createDetailsDiv = document.createElement('div');
-        
-    createDetailsDiv.innerHTML = `
+
+        createDetailsDiv.innerHTML = `
     <div class="">
          <img src="${detail.image_url}" class="img-fluid rounded-start" alt="...">
     </div>
@@ -141,9 +154,9 @@ const displayDetails = details =>{
                         
                     </div>
     `
-    getModalDiv.appendChild(createDetailsDiv)
+        getModalDiv.appendChild(createDetailsDiv)
     }
-    
+
 }
 
 loadDetails()
