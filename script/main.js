@@ -51,17 +51,17 @@ const displayNews = (newss) =>{
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">${news.title}</h5>
-                    <p class="card-text">${news.details}</p>
+                    <p class="card-text">${news.details.slice(0,250)} ...</p>
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="d-flex justify-content-between">
                         <img src="${news.author.img}" class=" img-name rounded-circle">
                         <div class="repoter">
-                        <h4 class="card-text">${news.author.name}</h4>
+                        <h4 class="card-text">${news.author.name ? news.author.name : 'author'}</h4>
                         <p>${news.author.published_date}</p>
                         </div>
                         
                         </div>
-                        <p class="text-muted"><i class="fa-solid fa-eye"></i>  ${news.total_view}</p>
+                        <p class="text-muted"><i class="fa-solid fa-eye"></i>  ${news.total_view ? news.total_view : 0}</p>
                         <p class="text-muted">${news.rating.number}</p>
 
 
@@ -97,9 +97,23 @@ const displayDetails = details =>{
         const createDetailsDiv = document.createElement('div');
         
     createDetailsDiv.innerHTML = `
-    <div class="col-md-4">
+    <div class="">
          <img src="${detail.image_url}" class="img-fluid rounded-start" alt="...">
     </div>
+                    <p class="card-text">${detail.details}</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex justify-content-between">
+                        
+                        <div class="repoter">
+                        <h4 class="card-text">${detail.author.name ? detail.author.name : 'author'}</h4>
+                        <p>${detail.author.published_date}</p>
+                        </div>
+                        
+                        </div>
+                        <p class="text-muted"><i class="fa-solid fa-eye"></i>  ${detail.total_view ? detail.total_view : 0}</p>
+                        <p class="text-muted">${detail.rating.number}</p>
+                        
+                    </div>
     `
     getModalDiv.appendChild(createDetailsDiv)
     }
