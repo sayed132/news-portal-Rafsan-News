@@ -4,5 +4,26 @@ html{
 /* font-family: 'Patrick Hand', cursive;
 font-family: 'Philosopher', sans-serif; */
 header h2{
-    font-family:'Philosopher', sans-serif ;
+    font-family: 'Gochi Hand', cursive;
+}
+
+.navMenu ul{
+    display: inline-block;
+}
+.navMenu ul li{
+    margin: 5px;
+    padding: 10px;
+}
+.navMenu ul li a{
+    font-size: 1rem;
+    color: gray;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    transition: all 1s;
+    
+}
+.navMenu ul li a:hover{
+    background-color: purple;
+    border-radius: 12px;
+    transform: scale(1.1);
+    color: white;
 }
