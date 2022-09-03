@@ -34,8 +34,14 @@ const loadNews = async (newss) =>{
     
     const data = await res.json()
     displayNews(data.data)
+    displayInput(data.data.length)
 };
-
+const displayInput = input =>{
+    const displayFeild = document.getElementById('input-feild')
+    displayFeild.innerText = `
+    ${input} items found in this category
+    `;
+}
 const displayNews = (newss) =>{
     const getNewsDiv = document.getElementById('news-section');
     getNewsDiv.textContent = '';
