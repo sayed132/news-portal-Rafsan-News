@@ -1,6 +1,9 @@
 html{
     scroll-behavior: smooth;
 }
+body{
+    background-color: #ddd;
+}
 /* font-family: 'Patrick Hand', cursive;
 font-family: 'Philosopher', sans-serif; */
 header h2{
