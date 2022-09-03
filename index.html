@@ -60,8 +60,13 @@
         <section class="container mt-3">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex justify-content-center align-items-center gap-3">
-                    <p class="mt-2 ">Short By View:</p>
-                    <input style="width: 120px ;" id="short-feild" type="text">
+
+                    <label for="view">Short By View:</label>
+
+                    <select class="border-0 rounded-start p-1" id="view">
+                        <option value="volvo">Default</option>
+                        <option value="saab">Coustom UI</option>
+                    </select>
                 </div>
                 <div class="d-flex gap-3">
                     <button class="btn btn-primary">Today's Pick</button>
@@ -77,30 +82,46 @@
 
         </section>
         <section>
-  
-  <!-- Modal -->
-  <div  class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" >
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" id="modal-details">
-          
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="modal-details">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="loader" class="d-none">
+            <div style="height:400px ;" class="d-flex justify-content-center align-items-center gap-2">
+                <button class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <span class="visually-hidden">Loading...</span>
+                  </button>
+                  <button class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                  </button>
+            </div>
         </section>
     </main>
     <!-- main section ends here  -->
 
 
-
+<footer class="text-center container">
+    <p>all right</p>
+</footer>
 
 
 

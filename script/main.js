@@ -9,7 +9,7 @@ const newsCategory = async () =>{
 
 const displayCategory = (categorys) =>{
     const getCategoryDiv = document.getElementById('navbar-items');
-
+    
     for (const category of categorys){
         const createCategoryList = document.createElement('ul');
         createCategoryList.classList.add('nav')
@@ -29,23 +29,27 @@ newsCategory()
 
 // display news starts 
 const loadNews = async (newss) =>{
+    toggleSpinner(true)
     const url = `https://openapi.programming-hero.com/api/news/category/0${newss}`
     const res = await fetch(url)
     
     const data = await res.json()
     displayNews(data.data)
-    displayInput(data.data.length)
+    displayInput(data.data)
 };
 const displayInput = input =>{
     const displayFeild = document.getElementById('input-feild')
     displayFeild.innerText = `
-    ${input} items found in this category
+    ${input.length} items found for this category 
     `;
 }
+
 const displayNews = (newss) =>{
     const getNewsDiv = document.getElementById('news-section');
+    
     getNewsDiv.textContent = '';
     for (const news of newss){
+        
         const createNewsDiv = document.createElement('div');
         createNewsDiv.classList.add('card')
         createNewsDiv.classList.add('mb-3')
@@ -81,8 +85,24 @@ const displayNews = (newss) =>{
         
         `;
         getNewsDiv.appendChild(createNewsDiv)
+        // const points = news.total_view;
+        // points.sort(function(a, b){return b - a});
+        
+    }
+    toggleSpinner(false)
+}
+
+const toggleSpinner = isLoading => {
+    const loadSection = document.getElementById('loader');
+    if(isLoading){
+        loadSection.classList.remove('d-none')
+    }
+    else{
+        loadSection.classList.add('d-none')
     }
 }
+
+
 loadNews()
 
 const loadDetails = id =>{
@@ -111,7 +131,7 @@ const displayDetails = details =>{
                         <div class="d-flex justify-content-between">
                         
                         <div class="repoter">
-                        <h4 class="card-text">${detail.author.name ? detail.author.name : 'author'}</h4>
+                        <h4 class="card-text">${detail.author.name ? detail.author.name : 'no data available'}</h4>
                         <p>${detail.author.published_date}</p>
                         </div>
                         
