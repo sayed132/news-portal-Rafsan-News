@@ -27,3 +27,11 @@ header h2{
     transform: scale(1.1);
     color: white;
 }
+
+.news-div .img-name{
+    width: 50px;
+    height: 50px;
+}
+.news-div .repoter{
+    margin-left: 10px;
+}
