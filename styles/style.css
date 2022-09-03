@@ -1,0 +1,8 @@
+html{
+    scroll-behavior: smooth;
+}
+/* font-family: 'Patrick Hand', cursive;
+font-family: 'Philosopher', sans-serif; */
+header h2{
+    font-family:'Philosopher', sans-serif ;
+}
