@@ -59,9 +59,7 @@ const displayNews = (newss) => {
     const getNewsDiv = document.getElementById('news-section');
 
     getNewsDiv.textContent = '';
-    for (const news of newss) {
-
-
+    newss.forEach(news => {
         const createNewsDiv = document.createElement('div');
         createNewsDiv.classList.add('card')
         createNewsDiv.classList.add('mb-3')
@@ -97,11 +95,51 @@ const displayNews = (newss) => {
         
         `;
         getNewsDiv.appendChild(createNewsDiv)
-        // const points = news.total_view;
-        // points.sort(function(a, b){return b - a});
-
-    }
+    })
     toggleSpinner(false)
+    // for (const news of newss) {
+
+
+    //     const createNewsDiv = document.createElement('div');
+    //     createNewsDiv.classList.add('card')
+    //     createNewsDiv.classList.add('mb-3')
+    //     createNewsDiv.innerHTML = `
+    //     <div class="row g-0">
+    //         <div class="col-md-4">
+    //             <img src="${news.image_url}" class="img-fluid rounded-start" alt="...">
+    //         </div>
+    //         <div class="col-md-8">
+    //             <div class="card-body">
+    //                 <h5 class="card-title">${news.title}</h5>
+    //                 <p class="card-text">${news.details.slice(0, 250)} ...</p>
+    //                 <div class="d-flex align-items-center justify-content-between">
+    //                     <div class="d-flex justify-content-between">
+    //                     <img src="${news.author.img}" class=" img-name rounded-circle">
+    //                     <div class="repoter">
+    //                     <h4 class="card-text">${news.author.name ? news.author.name : 'author'}</h4>
+    //                     <p>${news.author.published_date}</p>
+    //                     </div>
+                        
+    //                     </div>
+    //                     <p class="text-muted"><i class="fa-solid fa-eye"></i> ${news.total_view ? news.total_view : 0}</p>
+    //                     <p class="text-muted">${news.rating.number}</p>
+
+
+    //                     <button class="btn btn-primary" onclick="loadDetails('${news._id}')" data-bs-toggle="modal" data-bs-target="#exampleModal">More Details</button>
+                        
+    //                 </div>
+                    
+    //             </div>
+    //         </div>
+    //     </div>
+        
+    //     `;
+    //     getNewsDiv.appendChild(createNewsDiv)
+    //     // const points = news.total_view;
+    //     // points.sort(function(a, b){return b - a});
+
+    // }
+    // toggleSpinner(false)
 }
 
 const toggleSpinner = isLoading => {
